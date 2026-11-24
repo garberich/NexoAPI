@@ -11,7 +11,7 @@ from users.domain.errors import UserAlreadyExistsError
 router = APIRouter()
 
 
-@router.post("", response_model=UserResponse)
+@router.post("/", response_model=UserResponse)
 def create_user(payload: UserCreate, db: Session = Depends(get_db)):
     repo = SqlAlchemyUserRepository(db)
     use_case = CreateUserUseCase(repo)

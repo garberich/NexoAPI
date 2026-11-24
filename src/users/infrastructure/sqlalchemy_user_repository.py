@@ -10,7 +10,7 @@ class SqlAlchemyUserRepository(UserRepository):
 
     def save(self, user: User) -> None:
         db_user = UserModel(
-            id=user.id.bytes,
+            id=user.id,
             email=user.email,
             is_active=user.is_active,
             name=user.name

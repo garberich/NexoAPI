@@ -3,6 +3,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 
+from customers.schemas.customer import (
+    CreateCustomerRequest,
+    UpdateCustomerRequest,
+    CustomerResponse,
+)
 from customers.application.create_customer import CreateCustomerUseCase
 from customers.application.get_customer import GetCustomerUseCase
 from customers.application.list_customers import ListCustomersUseCase
@@ -15,24 +20,6 @@ from customers.infrastructure.sqlalchemy_customer_repository import (
 )
 
 router = APIRouter()
-
-
-# ---------- Schemas HTTP ----------
-class CreateCustomerRequest(BaseModel):
-    name: str
-    email: EmailStr
-
-
-class UpdateCustomerRequest(BaseModel):
-    name: str
-    email: EmailStr
-
-
-class CustomerResponse(BaseModel):
-    id: str
-    name: str
-    email: str
-    is_active: bool
 
 
 # ---------- Endpoint ----------
